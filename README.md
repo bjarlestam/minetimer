@@ -37,3 +37,7 @@ Paste the following (replace YOUR_USERNAME with your actual username):
 </plist>
 ```
 
+Load the timer:
+```bash
+launchctl load ~/Library/LaunchAgents/com.user.minecraft.timer.plist
+```
