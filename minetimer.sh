@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Starting minecraft timer..."
 
 TIME_LIMIT=1200        # 20 minutes in seconds
 WARNING_TIME=$((TIME_LIMIT - 120)) # 2 minutes before time limit
