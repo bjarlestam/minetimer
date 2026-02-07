@@ -11,7 +11,7 @@ start_time=""
 warned=false
 
 notify() {
-  /usr/bin/osascript -e "display alert \"$1\" with title \"Minecraft Timer\""
+  /usr/bin/osascript -e "display alert \"Minecraft Timer\" message \"$1\"" &
 }
 
 play_sound() {
