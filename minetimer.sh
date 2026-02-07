@@ -1,7 +1,7 @@
 #!/bin/bash
 
-TIME_LIMIT=1200        # 20 minutes
-WARNING_TIME=1080      # 18 minutes
+TIME_LIMIT=1200        # 20 minutes in seconds
+WARNING_TIME=$((TIME_LIMIT - 120)) # 2 minutes before time limit
 CHECK_INTERVAL=5
 
 SOUND="/System/Library/Sounds/Submarine.aiff"
