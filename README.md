@@ -12,7 +12,7 @@ sudo chown root:wheel /usr/local/minetimer.sh
 ```
 
 ```bash
-sudo nano /Library/LaunchDaemons/com.minecraft.timer.plist
+sudo nano /Users/restrictedusername/Library/LaunchAgents/com.minecraft.timer.plist
 ```
 Paste the following:
 
