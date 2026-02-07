@@ -1,8 +1,8 @@
 #!/bin/bash
 echo "Starting minecraft timer..."
 
-TIME_LIMIT=1200        # 20 minutes in seconds
-WARNING_TIME=$((TIME_LIMIT - 120)) # 2 minutes before time limit
+TIME_LIMIT=60        # 20 minutes in seconds
+WARNING_TIME=$((TIME_LIMIT - 30)) # 2 minutes before time limit
 CHECK_INTERVAL=5
 
 SOUND="/System/Library/Sounds/Submarine.aiff"
@@ -21,14 +21,14 @@ play_sound() {
 
 while true; do
   TARGET_USER="USER_NAME_GOES_HERE"
-  pid=$(pgrep -u "$TARGET_USER" -f "Minecraft")
+  # Match "minecraft" case-insensitively to catch "Minecraft.app" (launcher) and "java ... minecraft" (game)
+  current_pids=$(pgrep -u "$TARGET_USER" -f -i "minecraft")
 
-  if [[ -n "$pid" ]]; then
-    if [[ -z "$minecraft_pid" ]]; then
-      minecraft_pid="$pid"
+  if [[ -n "$current_pids" ]]; then
+    if [[ -z "$start_time" ]]; then
       start_time=$(date +%s)
       warned=false
-      echo "Minecraft started (PID $minecraft_pid)"
+      echo "Minecraft started"
     fi
 
     now=$(date +%s)
@@ -43,13 +43,12 @@ while true; do
     if [[ "$elapsed" -ge "$TIME_LIMIT" ]]; then
       notify "⛔ Tiden är ute! Stänger Minecraft."
       play_sound
-      kill "$minecraft_pid"
-      minecraft_pid=""
+      # Kill all detected minecraft processes
+      echo "$current_pids" | xargs kill
       start_time=""
       warned=false
     fi
   else
-    minecraft_pid=""
     start_time=""
     warned=false
   fi
