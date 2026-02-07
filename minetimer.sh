@@ -19,7 +19,8 @@ play_sound() {
 }
 
 while true; do
-  pid=$(pgrep -f "Minecraft")
+  TARGET_USER="USER_NAME_GOES_HERE"
+  pid=$(pgrep -u "$TARGET_USER" -f "Minecraft")
 
   if [[ -n "$pid" ]]; then
     if [[ -z "$minecraft_pid" ]]; then
