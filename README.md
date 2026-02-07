@@ -42,10 +42,10 @@ Paste the following:
     <string>root</string>
 
     <key>StandardOutPath</key>
-    <string>/var/log/minecraft_timer.out</string>
+    <string>/var/log/minetimer.out</string>
 
     <key>StandardErrorPath</key>
-    <string>/var/log/minecraft_timer.err</string>
+    <string>/var/log/minetimer.err</string>
   </dict>
 </plist>
 ```
