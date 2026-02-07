@@ -37,10 +37,6 @@ Paste the following:
     <key>KeepAlive</key>
     <true/>
 
-    <!-- Run as root -->
-    <key>UserName</key>
-    <string>root</string>
-
     <key>StandardOutPath</key>
     <string>/var/log/minetimer.out</string>
 
@@ -51,7 +47,12 @@ Paste the following:
 ```
 
 ```bash
-sudo chown root:wheel /Library/LaunchDaemons/com.minecraft.timer.plist
-sudo chmod 644 /Library/LaunchDaemons/com.minecraft.timer.plist
-sudo launchctl load /Library/LaunchDaemons/com.minecraft.timer.plist
+sudo chown restrictedusername \
+  /Users/restrictedusername/Library/LaunchAgents/com.minecraft.timer.plist
+
+sudo -u restrictedusername launchctl unload \
+  /Users/restrictedusername/Library/LaunchAgents/com.minecraft.timer.plist
+
+sudo -u restrictedusername launchctl load \
+  /Users/restrictedusername/Library/LaunchAgents/com.minecraft.timer.plist
 ```
