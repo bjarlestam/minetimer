@@ -33,13 +33,13 @@ while true; do
     elapsed=$((now - start_time))
 
     if [[ "$elapsed" -ge "$WARNING_TIME" && "$warned" = false ]]; then
-      notify "⚠️ 2 minutes left! Save your game."
+      notify "⚠️ 2 minuter kvar, spara spelet!"
       play_sound
       warned=true
     fi
 
     if [[ "$elapsed" -ge "$TIME_LIMIT" ]]; then
-      notify "⛔ Time's up! Closing Minecraft."
+      notify "⛔ Tiden är ute! Stänger Minecraft."
       play_sound
       kill "$minecraft_pid"
       minecraft_pid=""
