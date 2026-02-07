@@ -1,8 +1,8 @@
 #!/bin/bash
 echo "Starting minecraft timer..."
 
-TIME_LIMIT=60        # 20 minutes in seconds
-WARNING_TIME=$((TIME_LIMIT - 30)) # 2 minutes before time limit
+TIME_LIMIT=1200        # 20 minutes in seconds
+WARNING_TIME=$((TIME_LIMIT - 120)) # 2 minutes before time limit
 CHECK_INTERVAL=5
 
 SOUND="/System/Library/Sounds/Submarine.aiff"
