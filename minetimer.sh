@@ -21,8 +21,8 @@ play_sound() {
 
 while true; do
   TARGET_USER="USER_NAME_GOES_HERE"
-  # Match "minecraft" case-insensitively to catch "Minecraft.app" (launcher) and "java ... minecraft" (game)
-  current_pids=$(pgrep -u "$TARGET_USER" -f -i "minecraft")
+  # Match "minecraft" case-insensitively, but filter out our own osascript alerts
+  current_pids=$(pgrep -u "$TARGET_USER" -f -l -i "minecraft" | grep -v "osascript" | awk '{print $1}')
 
   if [[ -n "$current_pids" ]]; then
     if [[ -z "$start_time" ]]; then
@@ -44,7 +44,7 @@ while true; do
       notify "⛔ Tiden är ute! Stänger Minecraft."
       play_sound
       # Kill all detected minecraft processes
-      echo "$current_pids" | xargs kill
+      echo "$current_pids" | xargs kill -9
       start_time=""
       warned=false
     fi
